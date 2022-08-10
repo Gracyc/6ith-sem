@@ -40,7 +40,8 @@ app.get('/complaints',(req,res) => {
     }
 })
 
-app.delete('/deleteOrder/:id',(req,res) => {
+app.delete('/compdelete/:id',(req,res) => {
+  
     let _id = mongo.ObjectId(req.params.id);
     db.collection('complaints').remove({_id},(err,result) => {
         if(err) throw err;
@@ -52,11 +53,14 @@ app.delete('/deleteOrder/:id',(req,res) => {
 
 
 
+
 app.post('/writecomplaints',(req,res) => {
     db.collection('complaints').insert(req.body, (err,result) => {
         if(err) throw err;
         res.send('Complaint Sent Successfully.')
     })
+
+    
 })
 
 
